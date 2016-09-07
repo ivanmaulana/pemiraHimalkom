@@ -1,0 +1,79 @@
+<div class="col-md-4 col-md-offset-4 vertical-center" *ngIf="!loading && !log">
+  <form (ngSubmit)="submit()">
+    <fieldset>
+      <legend>Silahkan masuk dengan akun IPB kamu</legend>
+      <div class="form-group col-md-12">
+          <label for="email">Username : </label>
+          <div class="input-group">
+              <span class="input-group-addon"><i class="icon ion-person"></i></span>
+              <input type="text" class="form-control" name="name1" [(ngModel)]="login.username" placeholder="Username" autofocus></div>
+      </div>
+      <div class="form-group col-md-12">
+          <label for="email">Password : </label>
+          <div class="input-group">
+              <span class="input-group-addon"><i class="icon ion-locked"></i></span>
+              <input type="password" class="form-control" name="name2" [(ngModel)]="login.password" placeholder="Password"></div>
+      </div>
+      <div class="form-group col-md-12">
+          <button type="submit" class="btn btn-primary raised btn-block" [disabled]="!login.username || !login.password">Masuk</button><br />
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<div class="col-md-8 col-md-offset-2 vertical-center text-center" *ngIf="log">
+  <h3>Hai {{nama}}, Silahkan Pilih Calon Kamu. {{pilihan}}</h3>
+  <label>
+    <input type="radio" name="fakultas" value="1" (click)="radio(1)"/>
+    <img class="shadow" src="http://nxworld.net/codepen/css-image-hover-effects/pic01.jpg" />
+  </label>
+  <label>
+    <input type="radio" name="fakultas" value="2" (click)="radio(2)"/>
+    <img class="shadow" src="http://nxworld.net/codepen/css-image-hover-effects/pic01.jpg" />
+  </label>
+</div>
+
+<button (click)="myModal.open()" class="btn btn-primary" *ngIf="test">open my modal</button>
+<modal *ngIf="test" #myModal submitButtonLabel="Yakin" (onSubmit)="showSuccess()" (onSubmit)="myModal.close()" cancelButtonLabel="Batal">
+    <modal-header>
+        <div class="text-center">
+          <h3>Apakah Kamu Yakin ?</h3>
+        </div>
+    </modal-header>
+    <modal-content>
+        <b>Hello Modal!</b>
+    </modal-content>
+    <modal-footer>
+        <!-- <button class="btn btn-primary" (click)="myModal.close()">Yakin</button>
+        <button class="btn" (click)="myModal.close()">Batal</button> -->
+    </modal-footer>
+</modal>
+
+<div class="spinner" *ngIf="loading">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>
+<!-- <modal title="Modal title"
+        cancelButtonLabel="cancel"
+        submitButtonLabel="submit"
+        modalClass="modal-lg modal-sm any-other-css-class"
+        [hideCloseButton]="true|false"
+        [closeOnEscape]="true|false"
+        [closeOnOutsideClick]="true|false"
+        (onOpen)="actionOnOpen()"
+        (onClose)="actionOnClose()"
+        (onSubmit)="actionOnSubmit()">
+
+    <modal-header>
+        Modal header content goes there.
+    </modal-header>
+
+    <modal-content>
+        Modal body content goes there.
+    </modal-header>
+
+    <modal-footer>
+        Modal footer content goes there.
+    </modal-footer>
+
+</modal> -->
