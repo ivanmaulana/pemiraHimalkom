@@ -4,6 +4,7 @@ import { AppState } from '../app.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Http } from '@angular/http';
 import { JwtHelper } from 'angular2-jwt';
+import { HomeService } from './home.service';
 
 @Component({
 
@@ -19,17 +20,31 @@ export class Home {
   data = 'IniBuatKitaLoh';
 
   loading = false;
-  log = false;
+  log = true;
   nama;
 
-  pilihan = 0;
+  pilihanKm = 0;
+  namaKm;
+
+  pilihanFmipa = 0;
+  namaFmipa;
+
+  km;
+  fmipa;
+
 
   token;
   test = false;
   jwtHelper: JwtHelper = new JwtHelper();
   private login = {'username' : '', 'password': ''};
 
-  constructor(public appState: AppState, public toastr: ToastsManager, public router: Router, private route: ActivatedRoute, private http: Http) {
+  constructor(public service: HomeService, public appState: AppState, public toastr: ToastsManager, public router: Router, private route: ActivatedRoute, private http: Http) {
+
+    // console.log(service.bemKm);
+
+    this.km = service.bemKm;
+    this.fmipa = service.fmipa;
+
   }
 
 
@@ -44,8 +59,18 @@ export class Home {
 
   }
 
-  radio(num) {
-    this.pilihan = num;
+  radioKm(num) {
+    this.pilihanKm = num;
+    this.namaKm = this.service.bemKm[num-1].nama;
+  }
+
+  radioFmipa(num) {
+    this.pilihanFmipa = num;
+  }
+
+  clear() {
+
+    
   }
 
   showSuccess() {
@@ -92,5 +117,6 @@ export class Home {
     })
 
   }
+
 
 }

@@ -8,6 +8,32 @@ export class AppState {
 
   }
 
+  public bemKm = [
+    {
+      'id' : 1,
+      'nama' : 'Joko Widodo - Jusuf Kalla',
+      'quote' : 'Indonesia Hebat'
+    },
+    {
+      'id' : 2,
+      'nama' : 'Prabowo Subianto - Hatta Radjasa',
+      'quote' : 'Selamatkan Indonesia'
+    },
+  ]
+
+  public fmipa = [
+    {
+      'id' : 1,
+      'nama' : 'JKW - JK',
+      'quote' : 'Indonesia Hebat'
+    },
+    {
+      'id' : 2,
+      'nama' : 'PB - HT',
+      'quote' : 'Selamatkan Indonesia'
+    },
+  ]
+
   // already return a clone of the current state
   get state() {
     return this._state = this._clone(this._state);

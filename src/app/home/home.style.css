@@ -1,4 +1,7 @@
 /*styles for home content only*/
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300|Source+Sans+Pro';
+
 .vertical-center {
   position: absolute;
   top: 50%;
@@ -30,6 +33,7 @@
     -webkit-animation-delay: -1s;
     animation-delay: -1s
 }
+
 .input-group-addon {
   color: #3498db;
 }
@@ -52,61 +56,22 @@
     }
 }
 
+modal {
+  padding-top: 200px;
+}
 
+img {
+  width: 220px;
+  height: 150px;
+}
 
-/*IMAGE HOVER*/
+.light {
+  font-weight: 400px;
+  font-family: 'Source Sans Pro';
+}
 
-.column {
-	margin: 15px 15px 0;
-	padding: 0;
-}
-.column:last-child {
-	padding-bottom: 60px;
-}
-.column::after {
-	content: '';
-	clear: both;
-	display: block;
-}
-.column div {
-	position: relative;
-	float: left;
-	width: 300px;
-	height: 200px;
-	margin: 0 0 0 25px;
-	padding: 0;
-}
-.column div:first-child {
-	margin-left: 0;
-}
-.column div span {
-	position: absolute;
-	bottom: -20px;
-	left: 0;
-	z-index: -1;
-	display: block;
-	width: 300px;
-	margin: 0;
-	padding: 0;
-	color: #444;
-	font-size: 18px;
-	text-decoration: none;
-	text-align: center;
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-	opacity: 0;
-}
-figure {
-	width: 300px;
-	height: 200px;
-	margin: 0;
-	padding: 0;
-	background: #fff;
-	overflow: hidden;
-}
-figure:hover+span {
-	bottom: -36px;
-	opacity: 1;
+label {
+  border: 20px;
 }
 
 .shadow:hover {
@@ -123,36 +88,27 @@ figure:hover+span {
 label > input{ /* HIDE RADIO */
   display:none;
 }
-label > input + img{ /* IMAGE STYLES */
+label > input + div{ /* IMAGE STYLES */
   cursor:pointer;
   border:4px solid transparent;
 }
-label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
-  border:4px solid #2980b9;
+label > input:checked + div{ /* (CHECKED) IMAGE STYLES */
+  border: 5px solid #e74c3c;
   -moz-box-shadow: 1px 1px 10px #999;
   -webkit-box-shadow: 1px 1px 10px #999;
       box-shadow: 1px 1px 10px #999;
 }
 
-/* Flashing */
-.hover13 figure:hover img {
-	opacity: 1;
-	-webkit-animation: flash 1.5s;
-	animation: flash 1.5s;
+.nama {
+  color: #3498db;
 }
-@-webkit-keyframes flash {
-	0% {
-		opacity: .4;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-@keyframes flash {
-	0% {
-		opacity: .4;
-	}
-	100% {
-		opacity: 1;
-	}
+
+.footer {
+  /*height: 200px;*/
+  position: absolute;
+  bottom: 0%;
+  /*background-color: #f5f5f5;*/
+  padding-top : 30px;
+  padding-bottom : 10px;
+  width: 100%;
 }
