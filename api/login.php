@@ -71,7 +71,7 @@
           // echo $nama.' '.$nim;
 
           // QUERY NIM
-          $query = "SELECT * FROM pemilih WHERE nim = '$nim'";
+          $query = "SELECT * FROM pemilih WHERE nrp = '$nim'";
           $queryNim = mysqli_query($link, $query);
 
           $row = mysqli_fetch_array($queryNim);

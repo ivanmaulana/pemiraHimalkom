@@ -26,122 +26,187 @@
   </form>
 </div>
 
-<!-- <div class="col-md-8 col-md-offset-2 text-center" *ngIf="log">
-  <h4 class="light">Hai <i>{{nama}}</i>, Silahkan Pilih Calon Kamu. </h4>
-</div> -->
+<div *ngIf="log" class="col-md-12">
 
-<div class="col-md-8 col-md-offset-2 text-center" *ngIf="log">
+  <div class="col-md-10 col-md-offset-1 text-center">
 
-  <div class="row panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">Calon Ketua dan Wakil Ketua BEM KM IPB 2016<span *ngIf="namaKm">, Pilihan Saya : {{namaKm}}</span></h3>
-    </div>
-
-    <div class="panel-body">
-      <form (ngSubmit)="myModal.open()">
-
-      <div class="col-md-1"></div>
-      <div class="col-md-4 text-center">
-        <label>
-          <input type="radio" name="km" value="1" (click)="radioKm(1)" [(ngModel)]="aaa"/>
-          <div class="shadow">
-            <img  src="assets/img/bemkm1.png" />
-            <h4>{{km[0].nama}}</h4>
-            <p>
-              <i>{{km[0].quote}}</i>
-            </p>
-          </div>
-        </label>
+    <!-- <div class="row panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">Calon Ketua dan Wakil Ketua BEM KM IPB 2016</h2>
       </div>
-      <div class="col-md-1"></div>
 
-      <div class="col-md-1"></div>
-      <div class="col-md-4 text-center">
-        <label>
-          <input type="radio" name="km" value="2" (click)="radioKm(2)"/>
-          <div class="shadow">
-            <img src="assets/img/bemkm2.jpg" />
-            <h4>{{km[1].nama}}</h4>
-            <p>
-              <i>{{km[1].quote}}</i>
-            </p>
-          </div>
-        </label>
+      <div class="row panel-body">
+
+        <div class="col-md-6 text-center">
+          <label>
+            <input type="radio" name="km" value="1" [checked]="pilihKm1" (click)="radioKm(1)"/>
+            <div class="shadow">
+              <p class="id">
+                {{km[0].id}}
+              </p>
+              <img src="assets/img/bemkm1.png" />
+              <div class="row calon">
+                <div class="col-md-6">
+                  <p>Calon Ketua : <br />
+                    <b class="nama">{{km[0].ketua}}</b>
+                  </p>
+                </div>
+
+                <div class="col-md-6">
+                  <p>Calon Wakil Ketua : <br />
+                    <b class="nama">{{km[0].wakil}}</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="col-md-6 text-center">
+          <label>
+            <input type="radio" name="km" value="2" [checked]="pilihKm2" (click)="radioKm(2)"/>
+            <div class="shadow">
+              <p class="id">
+                {{km[1].id}}
+              </p>
+              <img src="assets/img/bemkm2.jpg" />
+              <br />
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Calon Ketua : <br />
+                    <b class="nama">{{km[1].ketua}}</b>
+                  </p>
+                </div>
+
+                <div class="col-md-6">
+                  <p>Calon Wakil Ketua : <br />
+                    <b class="nama">{{km[1].wakil}}</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
       </div>
-      <div class="col-md-1"></div>
-      <button type="submit" class="btn btn-primary" (click)="clear">clear</button>
-    </form>
+
+    </div> -->
+
+    <div class="row panel panel-primary">
+
+      <div class="panel-heading">
+        <h3 class="panel-title">Calon Ketua dan Wakil Ketua BEM FMIPA IPB 2016</h3>
+      </div>
+
+      <div class="panel-body">
+
+        <div class="col-md-6 text-center">
+          <label>
+            <input type="radio" name="fmipa" value="1" [checked]="pilihFmipa1" (click)="radioFmipa(1)"/>
+            <div class="shadow">
+              <p class="id">
+                {{km[0].id}}
+              </p>
+              <img src="assets/img/bemkm1.png" />
+              <div class="row calon">
+                <div class="col-md-6">
+                  <p>Calon Ketua : <br />
+                    <b class="nama">{{km[0].ketua}}</b>
+                  </p>
+                </div>
+
+                <div class="col-md-6">
+                  <p>Calon Wakil Ketua : <br />
+                    <b class="nama">{{km[0].wakil}}</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="col-md-6 text-center">
+          <label>
+            <input type="radio" name="fmipa" value="2" [checked]="pilihFmipa2" (click)="radioFmipa(2)"/>
+            <div class="shadow">
+              <p class="id">
+                {{km[1].id}}
+              </p>
+              <img src="assets/img/bemkm2.jpg" />
+              <br />
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Calon Ketua : <br />
+                    <b class="nama">{{km[1].ketua}}</b>
+                  </p>
+                </div>
+
+                <div class="col-md-6">
+                  <p>Calon Wakil Ketua : <br />
+                    <b class="nama">{{km[1].wakil}}</b>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+
+      </div>
+
     </div>
-
-
 
   </div>
 
-  <div class="row panel panel-primary">
+  <div class="row col-md-12">
+    <div class="col-md-2"></div>
 
-    <div class="panel-heading">
-      <h3 class="panel-title">Calon Ketua dan Wakil Ketua BEM FMIPA IPB 2016, Pilihan Saya :</h3>
+    <div class="col-md-6 text-center">
+      <button class="btn btn-primary btn-md btn-block" (click)="myModal.open()"><span style="font-size:20px">PILIH</span></button>
     </div>
 
-    <div class="panel-body">
-      <div class="col-md-1"></div>
-      <div class="col-md-4 text-center">
-        <label>
-          <input type="radio" name="fakultas" value="1" (click)="radio(1)"/>
-          <div class="shadow">
-            <img  src="assets/img/bemkm1.png"/>
-            <h4>{{fmipa[0].nama}}</h4>
-            <p>
-              <i>{{fmipa[1].nama}}</i>
-            </p>
-          </div>
-        </label>
-      </div>
-      <div class="col-md-1"></div>
-
-      <div class="col-md-1"></div>
-      <div class="col-md-4 text-center">
-        <label>
-          <input type="radio" name="fakultas" value="2" (click)="radio(2)"/>
-          <div class="shadow">
-            <img src="assets/img/bemkm2.jpg"/>
-            <h4>{{fmipa[1].nama}}</h4>
-            <p>
-              <i>{{fmipa[1].quote}}</i>
-            </p>
-          </div>
-        </label>
-      </div>
-      <div class="col-md-1"></div>
+    <div class="col-md-2 text-center">
+      <button class="btn btn-warning btn-md btn-block" (click)="clear()"><span style="font-size:20px">CLEAR</span></button>
     </div>
 
+    <div class="col-md-2"></div>
   </div>
 
-<div class="col-md-8 col-md-offset-2 text-center">
-  <button class="btn btn-primary btn-lg btn-block" (click)="myModal.open()"><span style="font-size:20px">PILIH</span></button>
+  <div class="row">
+    <div class="col-md-12">
+      <br /><br />
+      <blockquote class="blockquote-reverse">
+        <p><b>PILIH</b> jika sudah yakin untuk memilih. <b>CLEAR</b> untuk menghapus pilihan.</p>
+        <p>Jaga kerahasiaan akun IPB kamu agar tidak disalahgunakan oleh orang yang tidak bertanggungjawab.</p>
+        <small>Panita <cite title="Source Title">PEMIRA FMIPA 2016</cite></small>
+      </blockquote>
+    </div>
+  </div>
+
+  <modal #myModal submitButtonLabel="Yakin" (onSubmit)="vote()" (onSubmit)="myModal.close()" cancelButtonLabel="Kembali">
+      <modal-header>
+        <div class="text-center">
+          <h3>Apakah Kamu Yakin ?</h3>
+        </div>
+      </modal-header>
+      <modal-content>
+        <!-- <p>Ketua BEM KM IPB :</p>
+        <h4 class="nama">
+          {{namaKm}}
+        </h4> -->
+
+        <p>Ketua BEM FMIPA IPB :</p>
+        <h4 class="nama">
+          {{namaFmipa}}
+        </h4>
+      </modal-content>
+  </modal>
+
+
 </div>
 
-<button (click)="myModal.open()" class="btn btn-primary" *ngIf="test">open my modal</button>
-<modal #myModal submitButtonLabel="Yakin" (onSubmit)="showSuccess()" (onSubmit)="myModal.close()" cancelButtonLabel="Kembali">
-    <modal-header>
-      <div class="text-center">
-        <h3>Apakah Kamu Yakin ?</h3>
-      </div>
-    </modal-header>
-    <modal-content>
-      <!-- <h4>Pilihan Saya :</h4><br /> -->
-      <p>Ketua BEM KM IPB :</p>
-      <h4 class="nama">
-        Joko Widodo - Jusuf Kalla
-      </h4>
-
-      <br />
-      <p>Ketua BEM FMIPA IPB :</p>
-      <h4 class="nama">
-        Prabowo Subianto - Hatta Radjasa
-      </h4>
-    </modal-content>
-</modal>
+<!-- <div class="spinner" *ngIf="loading">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div> -->
 
 <!-- <modal title="Modal title"
         cancelButtonLabel="cancel"

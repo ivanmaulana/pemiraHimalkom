@@ -1,5 +1,7 @@
 RewriteEngine On    # Turn on the rewriting engine
 RewriteRule    ^kolokium?$    kolokium.php    [NC,L]
 RewriteRule    ^test?$    test.php    [NC,L]
+RewriteRule    ^vote?$    vote.php    [NC,L]
 RewriteRule    ^test1?$    login.php    [NC,L]
+RewriteRule    ^verif?$    verification.php    [NC,L]
 RewriteRule    ^barcode/([^/]+)    barcode.php?size=60&text=$1   [NC,L]

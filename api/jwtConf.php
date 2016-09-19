@@ -4,14 +4,14 @@
   require 'vendor/autoload.php';
   use \Firebase\JWT\JWT;
 
-  // key JWT
-  $key = 'JanganDiHackBang';
 
   // TOKEN PROVIDED
   if ($token) {
 
     try {
 
+      // key JWT
+      $key = 'JanganBikinMasalahDong2';
       // decode token
       $decoded_raw = JWT::decode($token, $key, array('HS256'));
       $decoded = (array) $decoded_raw;

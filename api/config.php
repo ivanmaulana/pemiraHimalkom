@@ -1,9 +1,9 @@
 <?php
 
   $host = 'localhost';
-  $user = 'admin_test';
-  $password = 'JanganDiHackBang';
-  $db = 'admin_test';
+  $user = 'pemira_fmipa';
+  $password = 'cveqMhPEut';
+  $db = 'pemira_fmipa';
 
   $link = mysqli_connect($host, $user, $password, $db) or die('Error Selecting Database');
 

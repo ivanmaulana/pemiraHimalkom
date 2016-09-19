@@ -1,5 +1,8 @@
 # @AngularClass
 
+api/
+sql/
+
 # Logs
 logs
 *.log

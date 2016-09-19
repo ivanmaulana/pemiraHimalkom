@@ -11,12 +11,14 @@ export class HomeService {
   public bemKm = [
     {
       'id' : 1,
-      'nama' : 'Joko Widodo - Jusuf Kalla',
+      'ketua' : 'Joko Widodo',
+      'wakil' : 'Jusuf Kalla',
       'quote' : 'Indonesia Hebat'
     },
     {
       'id' : 2,
-      'nama' : 'Prabowo Subianto - Hatta Radjasa',
+      'ketua' : 'Prabowo Subianto',
+      'wakil' : 'Hatta Radjasa',
       'quote' : 'Selamatkan Indonesia'
     },
   ]
@@ -24,12 +26,14 @@ export class HomeService {
   public fmipa = [
     {
       'id' : 1,
-      'nama' : 'JKW - JK',
+      'ketua' : 'Joko Widodo',
+      'wakil' : 'Jusuf Kalla',
       'quote' : 'Indonesia Hebat'
     },
     {
       'id' : 2,
-      'nama' : 'PB - HT',
+      'ketua' : 'Prabowo Subianto',
+      'wakil' : 'Hatta Radjasa',
       'quote' : 'Selamatkan Indonesia'
     },
   ]
