@@ -16,6 +16,8 @@ import { HomeService } from './home.service';
   templateUrl: './home.template.html'
 })
 export class Home {
+  bilik = false;
+
   localState = { value: '' };
   data = 'IniBuatKitaLoh';
 
@@ -49,13 +51,10 @@ export class Home {
 
   constructor(public service: HomeService, public appState: AppState, public toastr: ToastsManager, public router: Router, private route: ActivatedRoute, private http: Http) {
 
-    // console.log(service.bemKm);
-
     this.km = service.bemKm;
     this.fmipa = service.fmipa;
 
   }
-
 
   ngOnInit() {
     this.token = localStorage.getItem('id_token');
@@ -65,7 +64,6 @@ export class Home {
       this.nama = decoded.nama;
       this.nim = decoded.nim;
       this.log = true;
-      // this.showSuccess();
       this.loading = false;
     }
 
@@ -88,8 +86,6 @@ export class Home {
     }
 
     this.namaKm = this.km[num-1].ketua+' - '+this.km[num-1].wakil;
-    // console.log(this.namaKm);
-    // this.namaKm = this.service.bemKm[num-1].nama;
   }
 
   radioFmipa(num) {
@@ -98,7 +94,6 @@ export class Home {
     else if(num == 2) this.pilihFmipa2 = true;
 
     this.namaFmipa = this.fmipa[num-1].ketua+' - '+this.fmipa[num-1].wakil;
-    // console.log(this.namaFmipa);
   }
 
   clear() {
@@ -116,22 +111,21 @@ export class Home {
 
   showSuccess() {
     this.toastr.success('Login Berhasil', 'Success!');
-    // console.log(event);
   }
 
   showError(text) {
     this.toastr.error(text, 'Error!');
-    // console.log(event);
   }
 
   submit() {
     this.loading = true;
+    let status = false;
     let creds = JSON.stringify({username: this.login.username, password: this.login.password, magic: this.data});
 
     this.http.post('http://test.agri.web.id/api/test1', creds)
       .map(res => res.json())
       .subscribe(data => {
-
+        if (data) status = true;
         if (data.status) {
           localStorage.setItem('id_token', data.token);
           let decoded = this.jwtHelper.decodeToken(data.token);
@@ -148,13 +142,24 @@ export class Home {
 
         }
 
-        console.log(data);
-    })
+    });
+
+    setTimeout(() => {
+      if (!status) {
+        this.showNoConn();
+        this.log = false;
+        this.loading = false;
+        localStorage.clear();
+      }
+    }, 5000)
 
   }
 
+  showNoConn() {
+    this.toastr.error('Connection Time Out', 'Error!');
+  }
+
   vote() {
-    // console.log(this.token);
     let header = new Headers();
     header.append('Authorization', this.token);
     let creds = JSON.stringify({user : this.nim, vote : this.pilihanFmipa});
@@ -179,7 +184,6 @@ export class Home {
 
   showSuccessMilih() {
     this.toastr.success('Anda Berhasil Memilih', 'Success!');
-    // console.log(event);
   }
 
 

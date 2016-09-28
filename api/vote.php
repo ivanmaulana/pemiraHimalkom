@@ -1,6 +1,5 @@
 <?php
 
-  // include
   include 'config.php';
   include 'headers.php';
   // include 'jwtConf.php';

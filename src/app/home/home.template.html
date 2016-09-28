@@ -1,3 +1,42 @@
+<div *ngIf="!bilik" class="col-md-4 col-md-offset-4 vertical-center">
+  <form (ngSubmit)="submit()">
+    <fieldset>
+      <legend>Silahkan masuk dengan akun IPB kamu</legend>
+      <div class="form-group col-md-12">
+          <label for="email">Username : </label>
+          <div class="input-group">
+              <span class="input-group-addon"><i class="icon ion-person"></i></span>
+              <input type="text" class="form-control" name="name1" [(ngModel)]="login.username" placeholder="Username" autofocus></div>
+      </div>
+      <div class="form-group col-md-12">
+          <label for="email">Password : </label>
+          <div class="input-group">
+              <span class="input-group-addon"><i class="icon ion-locked"></i></span>
+              <input type="password" class="form-control" name="name2" [(ngModel)]="login.password" placeholder="Password"></div>
+      </div>
+      <div class="form-group col-md-12">
+          <button type="submit" class="btn btn-primary raised btn-block" [disabled]="!login.username || !login.password">Masuk</button><br />
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<div *ngIf="bilik">
+  <div class="col-md-12">
+    <div class="col-md-2 col-xs-6 col-sm-6">
+
+      <a href="#/mahasiswa/log">
+      <div class="small-box bg-grey text-center">
+        <br />
+        <i class="icon-box ion-chatboxes"></i>
+        <footer class="title-box text-left"><b>Log Bimbingan</b></footer>
+      </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+<!--
 <div class="spinner" *ngIf="loading">
   <div class="double-bounce1"></div>
   <div class="double-bounce2"></div>
@@ -29,67 +68,6 @@
 <div *ngIf="log" class="col-md-12">
 
   <div class="col-md-10 col-md-offset-1 text-center">
-
-    <!-- <div class="row panel panel-primary">
-      <div class="panel-heading">
-        <h2 class="panel-title">Calon Ketua dan Wakil Ketua BEM KM IPB 2016</h2>
-      </div>
-
-      <div class="row panel-body">
-
-        <div class="col-md-6 text-center">
-          <label>
-            <input type="radio" name="km" value="1" [checked]="pilihKm1" (click)="radioKm(1)"/>
-            <div class="shadow">
-              <p class="id">
-                {{km[0].id}}
-              </p>
-              <img src="assets/img/bemkm1.png" />
-              <div class="row calon">
-                <div class="col-md-6">
-                  <p>Calon Ketua : <br />
-                    <b class="nama">{{km[0].ketua}}</b>
-                  </p>
-                </div>
-
-                <div class="col-md-6">
-                  <p>Calon Wakil Ketua : <br />
-                    <b class="nama">{{km[0].wakil}}</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </label>
-        </div>
-
-        <div class="col-md-6 text-center">
-          <label>
-            <input type="radio" name="km" value="2" [checked]="pilihKm2" (click)="radioKm(2)"/>
-            <div class="shadow">
-              <p class="id">
-                {{km[1].id}}
-              </p>
-              <img src="assets/img/bemkm2.jpg" />
-              <br />
-              <div class="row">
-                <div class="col-md-6">
-                  <p>Calon Ketua : <br />
-                    <b class="nama">{{km[1].ketua}}</b>
-                  </p>
-                </div>
-
-                <div class="col-md-6">
-                  <p>Calon Wakil Ketua : <br />
-                    <b class="nama">{{km[1].wakil}}</b>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </label>
-        </div>
-      </div>
-
-    </div> -->
 
     <div class="row panel panel-primary">
 
@@ -188,10 +166,6 @@
         </div>
       </modal-header>
       <modal-content>
-        <!-- <p>Ketua BEM KM IPB :</p>
-        <h4 class="nama">
-          {{namaKm}}
-        </h4> -->
 
         <p>Ketua BEM FMIPA IPB :</p>
         <h4 class="nama">
@@ -201,34 +175,4 @@
   </modal>
 
 
-</div>
-
-<!-- <div class="spinner" *ngIf="loading">
-  <div class="double-bounce1"></div>
-  <div class="double-bounce2"></div>
 </div> -->
-
-<!-- <modal title="Modal title"
-        cancelButtonLabel="cancel"
-        submitButtonLabel="submit"
-        modalClass="modal-lg modal-sm any-other-css-class"
-        [hideCloseButton]="true|false"
-        [closeOnEscape]="true|false"
-        [closeOnOutsideClick]="true|false"
-        (onOpen)="actionOnOpen()"
-        (onClose)="actionOnClose()"
-        (onSubmit)="actionOnSubmit()">
-
-    <modal-header>
-        Modal header content goes there.
-    </modal-header>
-
-    <modal-content>
-        Modal body content goes there.
-    </modal-header>
-
-    <modal-footer>
-        Modal footer content goes there.
-    </modal-footer>
-
-</modal> -->

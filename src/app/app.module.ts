@@ -17,7 +17,6 @@ import { App } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState } from './app.service';
 import { Home } from './home';
-import { Login } from './login';
 import { HomeService } from './home/home.service';
 
 // Application wide providers
@@ -38,7 +37,6 @@ const APP_PROVIDERS = [
   declarations: [
     App,
     Home,
-    Login,
   ],
   imports: [ // import Angular's modules
     BrowserModule,

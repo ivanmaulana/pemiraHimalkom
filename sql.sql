@@ -9,3 +9,8 @@ SQL VPS :
 Host : 210.16.120.17/phpmyadmin
 Username : pemira_fmipa
 Pass : cveqMhPEut
+
+PEMIRA FEM :
+Host : 210.16.120.17/phpmyadmin
+Username : pemira_fem
+Pass : bqVEi33QPP
