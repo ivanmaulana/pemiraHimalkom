@@ -16,7 +16,7 @@ import { HomeService } from './home.service';
   templateUrl: './home.template.html'
 })
 export class Home {
-  bilik = false;
+  bilikStatus = false;
 
   localState = { value: '' };
   data = 'IniBuatKitaLoh';
@@ -48,6 +48,7 @@ export class Home {
   test = false;
   jwtHelper: JwtHelper = new JwtHelper();
   private login = {'username' : '', 'password': ''};
+  private bilik = {'username' : '', 'password': ''};
 
   constructor(public service: HomeService, public appState: AppState, public toastr: ToastsManager, public router: Router, private route: ActivatedRoute, private http: Http) {
 
@@ -71,6 +72,16 @@ export class Home {
       this.log = false;
     }
 
+  }
+
+  bilik() {
+    if (this.bilik.username == 'userBilik' && this.bilik.password == 'passwordBilikBangetNih') {
+      console.log('berhasil');
+    }
+
+    else {
+      console.log('gagal broh!');
+    }
   }
 
   radioKm(num) {
