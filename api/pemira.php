@@ -43,14 +43,18 @@
     $port = "389";
     $base_dn = "dc=ipb,dc=ac,dc=id";
 
-    // get JSON input from HTTP POST
-    $postdata = file_get_contents("php://input");
+    // // get JSON input from HTTP POST
+    // $postdata = file_get_contents("php://input");
+    //
+    // // JSON Decode from input
+    // $request = json_decode($postdata);
+    // $username = $request->username;
+    // $password = $request->password;
+    // $magic = $request->magic;
 
-    // JSON Decode from input
-    $request = json_decode($postdata);
-    $username = $request->username;
-    $password = $request->password;
-    $magic = $request->magic;
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $magic = $_POST['magic'];
 
     $ldap_con = ldap_connect( $host, $port );
 

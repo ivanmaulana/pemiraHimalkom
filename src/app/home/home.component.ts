@@ -27,7 +27,6 @@ export class Home {
   nim;
 
   pilihanKm = 0;
-
   pilihanFmipa = 0;
 
   km;
@@ -48,7 +47,7 @@ export class Home {
   test = false;
   jwtHelper: JwtHelper = new JwtHelper();
   private login = {'username' : '', 'password': ''};
-  private bilik = {'username' : '', 'password': ''};
+  private bilik;
 
   qr = false;
   qrcode;
@@ -57,6 +56,27 @@ export class Home {
 
     this.km = service.bemKm;
     this.fmipa = service.fmipa;
+
+    setInterval(() => {
+      this.bilik = localStorage.getItem('bilik');
+
+      http.get('http://test.agri.web.id/api/bilik.php?bilik='+this.bilik)
+          .map(res => res.json())
+          .subscribe(data => {
+            console.log(this.log+' '+data['statusBilik']);
+
+            if (this.log && !this.qr && data['statusBilik'] === '0') {
+              console.log('harusnya bisa');
+
+
+              this.keluar();
+              this.showGagalMilih('Force Log Out');
+            }
+
+
+        });
+
+    }, 2000);
 
   }
 
@@ -75,6 +95,11 @@ export class Home {
       this.log = false;
     }
 
+  }
+
+  pilihBilik(pilih) {
+    localStorage.setItem('bilik', pilih);
+    this.bilik = pilih;
   }
 
   radioFmipa(num) {
@@ -101,13 +126,7 @@ export class Home {
   }
 
   cekBilik() {
-    if (this.bilik.username == 'userBilik' && this.bilik.password == 'passwordBilikBangetNih') {
-      console.log('berhasil');
-    }
 
-    else {
-      console.log('gagal broh!');
-    }
   }
 
   showSuccess() {
@@ -126,7 +145,9 @@ export class Home {
   submit() {
     this.loading = true;
     let status = false;
-    let creds = JSON.stringify({username: this.login.username, password: this.login.password, magic: this.data});
+
+    this.bilik = localStorage.getItem('bilik');
+    let creds = JSON.stringify({username: this.login.username, password: this.login.password, magic: this.data, bilik: this.bilik});
 
     this.http.post('http://test.agri.web.id/api/testMipa', creds)
       .map(res => res.json())
@@ -142,7 +163,7 @@ export class Home {
           this.loading = false;
         }
         else {
-          localStorage.clear();
+          localStorage.removeItem('id_token');
           this.loading = false;
           this.showError(data.message);
 
@@ -155,7 +176,7 @@ export class Home {
         this.showNoConn();
         this.log = false;
         this.loading = false;
-        localStorage.clear();
+        localStorage.removeItem('id_token');
       }
     }, 5000)
 
@@ -166,47 +187,54 @@ export class Home {
   }
 
   vote() {
-    this.token = localStorage.getItem('id_token');
-    let decoded = this.jwtHelper.decodeToken(this.token);
-    this.nama = decoded.nama;
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', this.token);
-    let creds = JSON.stringify({vote : this.pilihanFmipa});
+    if (!this.pilihanFmipa) {
+      this.showGagalMilih('Silahkan Pilih Salah Satu');
+    }
+    else {
+      this.token = localStorage.getItem('id_token');
+      let decoded = this.jwtHelper.decodeToken(this.token);
+      this.nama = decoded.nama;
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      headers.append('Authorization', this.token);
+      let creds = JSON.stringify({vote : this.pilihanFmipa});
 
-    this.http.post('http://test.agri.web.id/api/voteMipa', creds, {headers: headers})
-      .map(res => res.json())
-      .subscribe(data => {
+      this.http.post('http://test.agri.web.id/api/voteMipa', creds, {headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
 
-        if(data['status']) {
-          this.showSuccessMilih();
-          this.qrcode = data['data'];
-          this.qr = true;
+          if(data['status']) {
+            this.showSuccessMilih();
+            this.qrcode = data['data'];
+            this.qr = true;
 
-          setTimeout(() => {
-            localStorage.clear();
+            setTimeout(() => {
+              localStorage.removeItem('id_token');
+              this.clear();
+              this.log = false;
+              this.qrcode = '';
+              this.qr = false;
+            }, 20000)
+          }
+
+          if(!data['status']) {
+            this.showGagalMilih(data['message']);
+
+            localStorage.removeItem('id_token');
             this.clear();
             this.log = false;
-            this.qrcode = '';
-            this.qr = false;
-          }, 20000)
-        }
 
-        if(!data['status']) {
-          this.showGagalMilih(data['message']);
-
-          localStorage.clear();
-          this.clear();
-          this.log = false;
-
-        }
+          }
 
 
-      })
+        })
+    }
+
+
 
   }
 
   keluar() {
-    localStorage.clear();
+    localStorage.removeItem('id_token');
     this.clear();
     this.log = false;
     this.qrcode = '';
