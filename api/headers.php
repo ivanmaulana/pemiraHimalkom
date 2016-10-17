@@ -22,5 +22,6 @@
   // get Authorization header
   $headers = apache_request_headers();
   $token = $headers['Authorization'];
+  $token = $headers['authorization'];
 
 ?>

@@ -41,7 +41,7 @@ export class Home {
 
   // PILIHAN
   namaKm = '-';
-  namaFmipa = '-';
+  namaFmipa = '';
 
 
   token;
@@ -49,6 +49,9 @@ export class Home {
   jwtHelper: JwtHelper = new JwtHelper();
   private login = {'username' : '', 'password': ''};
   private bilik = {'username' : '', 'password': ''};
+
+  qr = false;
+  qrcode;
 
   constructor(public service: HomeService, public appState: AppState, public toastr: ToastsManager, public router: Router, private route: ActivatedRoute, private http: Http) {
 
@@ -74,37 +77,12 @@ export class Home {
 
   }
 
-  bilik() {
-    if (this.bilik.username == 'userBilik' && this.bilik.password == 'passwordBilikBangetNih') {
-      console.log('berhasil');
-    }
-
-    else {
-      console.log('gagal broh!');
-    }
-  }
-
-  radioKm(num) {
-    this.pilihanKm = num;
-    if (num == 1) {
-      this.pilihKm1 = true;
-
-
-    }
-    else if (num == 2) {
-      this.pilihKm2 = true;
-
-    }
-
-    this.namaKm = this.km[num-1].ketua+' - '+this.km[num-1].wakil;
-  }
-
   radioFmipa(num) {
     this.pilihanFmipa = num;
     if(num == 1) this.pilihFmipa1 = true;
     else if(num == 2) this.pilihFmipa2 = true;
 
-    this.namaFmipa = this.fmipa[num-1].ketua+' - '+this.fmipa[num-1].wakil;
+    this.namaFmipa = this.km[num-1].ketua+' - '+this.km[num-1].wakil;
   }
 
   clear() {
@@ -115,9 +93,21 @@ export class Home {
 
     this.pilihanKm = 0;
     this.pilihanFmipa = 0;
+    this.login.username = "";
+    this.login.password = "";
 
     this.namaKm = '-';
-    this.namaFmipa = '-';
+    this.namaFmipa = '';
+  }
+
+  cekBilik() {
+    if (this.bilik.username == 'userBilik' && this.bilik.password == 'passwordBilikBangetNih') {
+      console.log('berhasil');
+    }
+
+    else {
+      console.log('gagal broh!');
+    }
   }
 
   showSuccess() {
@@ -128,19 +118,24 @@ export class Home {
     this.toastr.error(text, 'Error!');
   }
 
+  reset() {
+    this.login.username = '';
+    this.login.password = '';
+  }
+
   submit() {
     this.loading = true;
     let status = false;
     let creds = JSON.stringify({username: this.login.username, password: this.login.password, magic: this.data});
 
-    this.http.post('http://test.agri.web.id/api/test1', creds)
+    this.http.post('http://test.agri.web.id/api/testMipa', creds)
       .map(res => res.json())
       .subscribe(data => {
         if (data) status = true;
         if (data.status) {
           localStorage.setItem('id_token', data.token);
           let decoded = this.jwtHelper.decodeToken(data.token);
-          this.nama = decoded.token;
+          this.nama = decoded.nama;
           this.nim = decoded.nim;
           this.log = true;
           this.showSuccess();
@@ -171,30 +166,59 @@ export class Home {
   }
 
   vote() {
-    let header = new Headers();
-    header.append('Authorization', this.token);
-    let creds = JSON.stringify({user : this.nim, vote : this.pilihanFmipa});
+    this.token = localStorage.getItem('id_token');
+    let decoded = this.jwtHelper.decodeToken(this.token);
+    this.nama = decoded.nama;
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers.append('Authorization', this.token);
+    let creds = JSON.stringify({vote : this.pilihanFmipa});
 
-    this.http.post('http://test.agri.web.id/api/vote', creds, {headers: header})
+    this.http.post('http://test.agri.web.id/api/voteMipa', creds, {headers: headers})
       .map(res => res.json())
       .subscribe(data => {
-        console.log(data['status']);
 
         if(data['status']) {
           this.showSuccessMilih();
+          this.qrcode = data['data'];
+          this.qr = true;
+
+          setTimeout(() => {
+            localStorage.clear();
+            this.clear();
+            this.log = false;
+            this.qrcode = '';
+            this.qr = false;
+          }, 20000)
+        }
+
+        if(!data['status']) {
+          this.showGagalMilih(data['message']);
 
           localStorage.clear();
+          this.clear();
           this.log = false;
+
         }
 
 
       })
 
-    console.log(creds);
+  }
+
+  keluar() {
+    localStorage.clear();
+    this.clear();
+    this.log = false;
+    this.qrcode = '';
+    this.qr = false;
   }
 
   showSuccessMilih() {
     this.toastr.success('Anda Berhasil Memilih', 'Success!');
+  }
+
+  showGagalMilih(pesan) {
+    this.toastr.error(pesan, 'Error!');
   }
 
 

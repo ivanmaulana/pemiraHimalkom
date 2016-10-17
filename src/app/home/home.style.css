@@ -1,11 +1,26 @@
 /*styles for home content only*/
 
 /*@import 'https://fonts.googleapis.com/css?family=Open+Sans:300|Source+Sans+Pro';*/
+.qr {
+  width: 300px;
+  height: 300px;
+}
+
+.catatan {
+  color: #7f8c8d;
+  font-size: 12px;
+}
 
 .vertical-center {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.info {
+  font-size: 15px;
+  color: #e74c3c;
+  padding-top: 30px;
 }
 
 .spinner {
@@ -61,8 +76,8 @@ modal {
 }
 
 img {
-  width: 300px;
-  height: 120px;
+  width: 80%;
+  height: 150px;
 }
 
 .login {
