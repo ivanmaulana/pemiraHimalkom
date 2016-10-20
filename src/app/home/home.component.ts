@@ -57,27 +57,6 @@ export class Home {
     this.km = service.bemKm;
     this.fmipa = service.fmipa;
 
-    setInterval(() => {
-      this.bilik = localStorage.getItem('bilik');
-
-      http.get('http://test.agri.web.id/api/bilik.php?bilik='+this.bilik)
-          .map(res => res.json())
-          .subscribe(data => {
-            console.log(this.log+' '+data['statusBilik']);
-
-            if (this.log && !this.qr && data['statusBilik'] === '0') {
-              console.log('harusnya bisa');
-
-
-              this.keluar();
-              this.showGagalMilih('Force Log Out');
-            }
-
-
-        });
-
-    }, 2000);
-
   }
 
   ngOnInit() {
@@ -95,11 +74,6 @@ export class Home {
       this.log = false;
     }
 
-  }
-
-  pilihBilik(pilih) {
-    localStorage.setItem('bilik', pilih);
-    this.bilik = pilih;
   }
 
   radioFmipa(num) {
@@ -125,10 +99,6 @@ export class Home {
     this.namaFmipa = '';
   }
 
-  cekBilik() {
-
-  }
-
   showSuccess() {
     this.toastr.success('Login Berhasil', 'Success!');
   }
@@ -149,7 +119,7 @@ export class Home {
     this.bilik = localStorage.getItem('bilik');
     let creds = JSON.stringify({username: this.login.username, password: this.login.password, magic: this.data, bilik: this.bilik});
 
-    this.http.post('http://test.agri.web.id/api/testMipa', creds)
+    this.http.post('http://test.agri.web.id/api/testHimalkom', creds)
       .map(res => res.json())
       .subscribe(data => {
         if (data) status = true;
@@ -198,7 +168,7 @@ export class Home {
       headers.append('Authorization', this.token);
       let creds = JSON.stringify({vote : this.pilihanFmipa});
 
-      this.http.post('http://test.agri.web.id/api/voteMipa', creds, {headers: headers})
+      this.http.post('http://test.agri.web.id/api/voteHimalkom', creds, {headers: headers})
         .map(res => res.json())
         .subscribe(data => {
 

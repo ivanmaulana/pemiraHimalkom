@@ -11,13 +11,13 @@ export class HomeService {
   public bemKm = [
     {
       'id' : 1,
-      'ketua' : 'Sayyid Al Bahr Maulana',
-      'wakil' : 'Riyan Hidayatullah'
+      'ketua' : 'Muhammad Murtadha Ramadhan',
+      'wakil' : 'David Tahi Ulubalang'
     },
     {
       'id' : 2,
-      'ketua' : 'Muhammad Fahreza',
-      'wakil' : 'Nizar Maulana Azhari '
+      'ketua' : 'Muhammad Mukhibillah Asshidiqy',
+      'wakil' : 'Fajar Maulana'
     },
   ]
 
